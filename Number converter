@@ -1,0 +1,99 @@
+#include <stdio.h>
+
+void decimalToBinary(int n) {
+    if (n == 0) {
+        printf("0");
+        return;
+    }
+
+    int binary[32]; // Array to hold binary digits
+    int index = 0;
+
+    while (n > 0) {
+        binary[index++] = n % 2; // Store remainder (0 or 1)
+        n /= 2; // Divide by 2
+    }
+
+    
+    for (int i = index - 1; i >= 0; i--) {
+        printf("%d", binary[i]);
+    }
+}
+
+void decimalToOctal(int n) {
+    if (n == 0) {
+        printf("0");
+        return;
+    }
+
+    int octal[32]; // Array to hold octal digits
+    int index = 0;
+
+    while (n > 0) {
+        octal[index++] = n % 8; // Store remainder (0 to 7)
+        n /= 8; // Divide by 8
+    }
+
+  
+    for (int i = index - 1; i >= 0; i--) {
+        printf("%d", octal[i]);
+    }
+}
+
+void decimalToHexadecimal(int n) {
+    if (n == 0) {
+        printf("0");
+        return;
+    }
+
+    char hexadecimal[32]; // Array to hold hexadecimal digits
+    int index = 0;
+
+    while (n > 0) {
+        int remainder = n % 16; // Get remainder (0 to 15)
+        if (remainder < 10) {
+            hexadecimal[index++] = remainder + '0'; // Convert to character
+        } else {
+            hexadecimal[index++] = remainder - 10 + 'A'; // Convert to A-F
+        }
+        n /= 16; // Divide by 16
+    }
+
+    
+    for (int i = index - 1; i >= 0; i--) {
+        printf("%c", hexadecimal[i]);
+    }
+}
+
+int main() {
+    int number;
+    int choice;
+
+    printf("Enter a decimal number: ");
+    scanf("%d", &number);
+
+    printf("Select conversion type:\n");
+    printf("1. Binary\n");
+    printf("2. Octal\n");
+    printf("3. Hexadecimal\n");
+    printf("Enter your choice (1-3): ");
+    scanf("%d", &choice);
+
+    printf("Converted value: ");
+    switch (choice) {
+        case 1:
+            decimalToBinary(number);
+            break;
+        case 2:
+            decimalToOctal(number);
+            break;
+        case 3:
+            decimalToHexadecimal(number);
+            break;
+        default:
+            printf("Invalid choice.\n");
+    }
+
+    printf("\n");
+    return 0;
+}
